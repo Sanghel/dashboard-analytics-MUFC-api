@@ -6,6 +6,9 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
     "migrate": "node migrations/migrate.js"
@@ -25,7 +28,9 @@
   "devDependencies": {
     "eslint": "^9.39.4",
     "eslint-config-prettier": "^10.1.8",
+    "jest": "^30.3.0",
     "nodemon": "^3.1.14",
-    "prettier": "^3.8.1"
+    "prettier": "^3.8.1",
+    "supertest": "^7.2.2"
   }
 }
