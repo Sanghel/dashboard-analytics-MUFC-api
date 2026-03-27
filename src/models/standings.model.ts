@@ -1,6 +1,6 @@
 import { RowDataPacket } from 'mysql2';
 import { pool } from '../config/db';
-import { DbStanding } from '../types/db';
+import { DbStanding, DbTeamInfo } from '../types/db';
 
 export const upsertStanding = async (standing: DbStanding): Promise<void> => {
   const sql = `
@@ -61,4 +61,12 @@ export const getStandings = async (season: number, leagueId: number): Promise<Db
     [season, leagueId]
   );
   return rows as DbStanding[];
+};
+
+export const getTeamInfo = async (teamId: number, season: number, leagueId: number): Promise<DbTeamInfo | null> => {
+  const [rows] = await pool.execute<RowDataPacket[]>(
+    'SELECT team_id, team_name, team_logo FROM standings WHERE team_id = ? AND season = ? AND league_id = ? LIMIT 1',
+    [teamId, season, leagueId]
+  );
+  return (rows[0] as DbTeamInfo) || null;
 };

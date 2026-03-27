@@ -1,8 +1,9 @@
 import { Router } from 'express';
-import { stats } from '../controllers/team.controller';
+import { info, stats } from '../controllers/team.controller';
 
 const router = Router();
 
+router.get('/info', info);
 router.get('/stats', stats);
 
 export default router;

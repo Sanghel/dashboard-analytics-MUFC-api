@@ -2,7 +2,7 @@
   "name": "dashboard-analytics-mufc-api",
   "version": "1.0.0",
   "description": "Backend en Node.js + Express + MySQL que actúa como capa intermedia entre el frontend del Manchester United Analytics Dashboard y la API externa [API-Football](https://v3.football.api-sports.io).",
-  "main": "src/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "start": "node dist/index.js",
     "dev": "tsx watch src/index.ts",
@@ -12,7 +12,7 @@
     "test:coverage": "jest --coverage",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
-    "migrate": "node migrations/migrate.js"
+    "migrate": "tsx migrations/migrate.ts"
   },
   "keywords": [],
   "author": "",

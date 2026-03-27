@@ -210,6 +210,16 @@ describe('transformStanding', () => {
 });
 
 describe('transformPlayer', () => {
+  it('returns null when statistics array is empty', () => {
+    const playerWithNoStats = { ...apiPlayer, statistics: [] };
+    expect(transformPlayer(playerWithNoStats, 2024, 33)).toBeNull();
+  });
+
+  it('returns null when statistics is undefined', () => {
+    const playerWithNoStats = { ...apiPlayer, statistics: undefined as unknown as [] };
+    expect(transformPlayer(playerWithNoStats, 2024, 33)).toBeNull();
+  });
+
   const result = transformPlayer(apiPlayer, 2024, 33);
 
   it('maps player identity fields', () => {

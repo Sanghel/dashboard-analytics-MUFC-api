@@ -97,7 +97,8 @@ export const transformStanding = (s: ApiFootballStanding, season: number, league
 });
 
 export const transformPlayer = (p: ApiFootballPlayerStats, season: number, teamId: number): DbPlayer | null => {
-  const stats: Partial<ApiFootballPlayerStats['statistics'][0]> = p.statistics[0] || {};
+  if (!p.statistics?.length) return null;
+  const stats: ApiFootballPlayerStats['statistics'][0] = p.statistics[0];
   return {
     id: p.player.id,
     name: p.player.name,
