@@ -4,6 +4,7 @@ const cors = require('cors');
 const morgan = require('morgan');
 const { validateEnv } = require('./config/env');
 const { testConnection } = require('./config/db');
+const { registerJobs } = require('./jobs/index');
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -21,6 +22,7 @@ app.use(errorHandler);
 
 const start = async () => {
   await testConnection();
+  registerJobs();
   app.listen(PORT, () => {
     // eslint-disable-next-line no-console
     console.log(`Server running on port ${PORT}`);
