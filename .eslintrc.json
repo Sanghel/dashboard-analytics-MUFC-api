@@ -1,9 +1,12 @@
 {
-  "env": { "node": true, "es2021": true },
-  "extends": ["eslint:recommended", "prettier"],
-  "parserOptions": { "ecmaVersion": "latest" },
+  "env": { "node": true, "es2022": true },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "rules": {
-    "no-unused-vars": "warn",
     "no-console": "warn"
   }
 }
