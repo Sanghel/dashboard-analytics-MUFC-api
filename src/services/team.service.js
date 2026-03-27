@@ -1,4 +1,5 @@
 const { getTeamStats } = require('../models/team.model');
+const { getTeamInfo } = require('../models/standings.model');
 
 const TEAM_ID = parseInt(process.env.MUFC_TEAM_ID || '33', 10);
 const LEAGUE_ID = parseInt(process.env.PREMIER_LEAGUE_ID || '39', 10);
@@ -8,4 +9,8 @@ const getStats = async ({ season = SEASON, leagueId = LEAGUE_ID } = {}) => {
   return getTeamStats(TEAM_ID, season, leagueId);
 };
 
-module.exports = { getStats };
+const getInfo = async ({ season = SEASON, leagueId = LEAGUE_ID } = {}) => {
+  return getTeamInfo(TEAM_ID, season, leagueId);
+};
+
+module.exports = { getStats, getInfo };

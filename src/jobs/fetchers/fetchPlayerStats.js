@@ -22,7 +22,8 @@ const fetchPlayerStats = async () => {
     totalPages = response.data.paging?.total || 1;
 
     for (const p of players) {
-      await upsertPlayer(transformPlayer(p, SEASON, TEAM_ID));
+      const player = transformPlayer(p, SEASON, TEAM_ID);
+      if (player) await upsertPlayer(player);
     }
 
     totalSaved += players.length;
