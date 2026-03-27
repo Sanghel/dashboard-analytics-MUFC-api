@@ -3,6 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const { validateEnv } = require('./config/env');
+const { testConnection } = require('./config/db');
 const routes = require('./routes/index');
 const errorHandler = require('./middlewares/errorHandler');
 
@@ -18,9 +19,18 @@ app.use(express.json());
 app.use('/api', routes);
 app.use(errorHandler);
 
-app.listen(PORT, () => {
+const start = async () => {
+  await testConnection();
+  app.listen(PORT, () => {
+    // eslint-disable-next-line no-console
+    console.log(`Server running on port ${PORT}`);
+  });
+};
+
+start().catch((err) => {
   // eslint-disable-next-line no-console
-  console.log(`Server running on port ${PORT}`);
+  console.error('Failed to start server:', err.message);
+  process.exit(1);
 });
 
 module.exports = app;
