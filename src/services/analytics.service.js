@@ -22,7 +22,7 @@ const getOverview = async () => {
     .slice()
     .reverse()
     .map((f) => {
-      if (f.home_goals === null) return null;
+      if (f.home_goals === null || f.away_goals === null) return null;
       const mufcIsHome = f.home_team_id === TEAM_ID;
       const mufcGoals = mufcIsHome ? f.home_goals : f.away_goals;
       const oppGoals = mufcIsHome ? f.away_goals : f.home_goals;

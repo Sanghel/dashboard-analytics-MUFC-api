@@ -61,4 +61,12 @@ const getStandings = async (season, leagueId) => {
   return rows;
 };
 
-module.exports = { upsertStanding, getStandings };
+const getTeamInfo = async (teamId, season, leagueId) => {
+  const [rows] = await pool.execute(
+    'SELECT team_id, team_name, team_logo FROM standings WHERE team_id = ? AND season = ? AND league_id = ? LIMIT 1',
+    [teamId, season, leagueId]
+  );
+  return rows[0] || null;
+};
+
+module.exports = { upsertStanding, getStandings, getTeamInfo };

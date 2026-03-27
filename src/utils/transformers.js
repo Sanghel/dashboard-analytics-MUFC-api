@@ -80,7 +80,8 @@ const transformStanding = (s, season, leagueId) => ({
 });
 
 const transformPlayer = (p, season, teamId) => {
-  const stats = p.statistics[0] || {};
+  if (!p.statistics?.length) return null;
+  const stats = p.statistics[0];
   return {
     id: p.player.id,
     name: p.player.name,
